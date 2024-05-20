@@ -1,5 +1,8 @@
+// this is the root layout for the entire application
 import { Inter } from "next/font/google";
 import "./globals.css";
+import AllContextProvider from "@/context/AllContext";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,10 +15,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
       <body className={inter.className}>
-        RootLayout
+        <AllContextProvider>
 
-        {children}
+          {children}
 
+        </AllContextProvider>
+
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
       </body>
     </html>
   );
