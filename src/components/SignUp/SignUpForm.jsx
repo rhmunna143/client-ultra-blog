@@ -1,5 +1,6 @@
 "use client"
 import { AllContext } from "@/context/AllContext";
+import Link from "next/link";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
@@ -44,7 +45,10 @@ const SignUpForm = () => {
                         <div className="form-control mt-6">
                             <button type="submit" className="btn btn-primary">Sign UP</button>
                         </div>
+
+                        <p className="text-center">Already have account? <Link href={"/login"} className="text-blue-600 hover:text-blue-900">Login now</Link></p>
                     </form>
+
                 </div>
             </div>
         </div>
