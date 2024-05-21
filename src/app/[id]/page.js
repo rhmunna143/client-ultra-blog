@@ -1,8 +1,9 @@
+import Post from "./Post";
 
 const page = () => {
     return (
         <div>
-            dynamic
+            <Post />
         </div>
     );
 };

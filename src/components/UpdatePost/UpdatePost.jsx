@@ -38,9 +38,9 @@ const UpdatePostForm = () => {
 
     const onSubmit = (data) => {
         const payload = {
-            title: data.title,
-            content: data.content,
-            image_link: imageUrl,
+            title: data.title ? data.title : title,
+            content: data.content ? data.content : content,
+            image_link: imageUrl ? imageUrl : image_link,
         };
 
         axios.put(`${baseUrl}/posts/${id}`, payload, { withCredentials: true }).then((res) => {
