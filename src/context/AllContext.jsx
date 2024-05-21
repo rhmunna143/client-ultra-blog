@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 export const AllContext = createContext(null);
 
 const AllContextProvider = ({ children }) => {
+
     const signUp = (username, password) => {
         axios.post(`${baseUrl}/auth/register`, {
             username,
@@ -22,11 +23,25 @@ const AllContextProvider = ({ children }) => {
         });
     };
 
+    const login = (username, password) => {
+        axios.post(`${baseUrl}/auth/login`, {
+            username,
+            password
+        }, { withCredentials: true }).then(res => {
+            console.log(res);
+            if (res.data.id) {
+                toast.success(`${res.data?.username} logged in successfully`);
+            }
+        }).catch(err => {
+            console.error(err);
+            toast.error("Failed to log in user." + err);
+        });
+    };
 
     const value = {
         // Add your context values here
-
         signUp,
+        login
     };
 
     return (

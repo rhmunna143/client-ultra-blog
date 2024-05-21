@@ -1,6 +1,7 @@
 import React from "react"; // Add this line
 
 import SignUpForm from "./SignUpForm";
+import AllContextProvider from "@/context/AllContext";
 
 export default {
     title: "SignUpForm",
@@ -15,6 +16,20 @@ function customSubmitHandler() {
     console.log("submitted");
 }
 
-export const Default = (args) => <SignUpForm {...args} />;
-export const WithCustomSubmit = () => <SignUpForm onSubmit={customSubmitHandler} />;
-export const WithCustomProps = () => <SignUpForm username="JohnDoe" />;
+export const Default = (args) => (
+    <AllContextProvider>
+        <SignUpForm {...args} />
+    </AllContextProvider>
+);
+
+export const WithCustomSubmit = () => (
+    <AllContextProvider>
+        <SignUpForm onSubmit={customSubmitHandler} />
+    </AllContextProvider>
+);
+
+export const WithCustomProps = () => (
+    <AllContextProvider>
+        <SignUpForm username="JohnDoe" />
+    </AllContextProvider>
+);

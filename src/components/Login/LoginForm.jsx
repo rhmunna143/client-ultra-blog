@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
-const SignUpForm = () => {
-    const { signUp } = useContext(AllContext);
+const LoginForm = () => {
+    const { login } = useContext(AllContext);
 
     const {
         register,
@@ -15,14 +15,14 @@ const SignUpForm = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        signUp(data.username, data.password);
+        login(data.username, data.password);
     }
 
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Sign UP now!</h1>
+                    <h1 className="text-5xl font-bold">Login now!</h1>
                     <p className="py-6">Provident cupiditate voluptatem et in. <br /> Quaerat fugiat ut assumenda excepturi exercitationem quasi. <br /> In deleniti eaque aut repudiandae et a id nisi.</p>
                 </div>
 
@@ -43,16 +43,15 @@ const SignUpForm = () => {
                         </div>
 
                         <div className="form-control mt-6">
-                            <button type="submit" className="btn btn-primary">Sign UP</button>
+                            <button type="submit" className="btn btn-primary">Login</button>
                         </div>
 
-                        <p className="text-center">Already have account? <Link href={"/login"} className="text-blue-600 hover:text-blue-900">Login now</Link></p>
+                        <p className="text-center">Do not have account? <Link href={"/signup"} className="text-blue-600 hover:text-blue-900">Register now</Link></p>
                     </form>
-
                 </div>
             </div>
         </div>
     );
 };
 
-export default SignUpForm;
+export default LoginForm;
