@@ -56,7 +56,7 @@ const NewPostForm = () => {
 
     return (
         <div className="my-20">
-            <div className="border w-60 h-28 mx-auto">
+            <div className="border max-w-60 mx-auto">
                 {!imageUrl && <p className="text-center pt-10">No image uploaded</p>}
                 {imageUrl && (
                     <Image

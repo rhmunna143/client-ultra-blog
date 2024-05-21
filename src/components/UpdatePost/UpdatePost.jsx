@@ -56,14 +56,14 @@ const UpdatePostForm = () => {
 
     return (
         <div className="my-20">
-            <div className="border w-60 h-28 mx-auto mb-4">
+            <div className="border max-w-60 mx-auto mb-4">
                 {!imageUrl && !image_link && <p className="text-center pt-10">No image uploaded</p>}
 
                 {imageUrl && (
                     <Image
                         src={imageUrl}
                         alt="uploaded"
-                        className="mt-2"
+                        className="mt-2 object-cover"
                         width={240}
                         height={112} // Adjust the height as per your requirements
                         layout="responsive"
@@ -74,7 +74,7 @@ const UpdatePostForm = () => {
                     <Image
                         src={image_link}
                         alt="uploaded"
-                        className="mt-2"
+                        className="mt-2 object-cover"
                         width={240}
                         height={112} // Adjust the height as per your requirements
                         layout="responsive"
@@ -108,6 +108,7 @@ const UpdatePostForm = () => {
                             Upload
                         </button>
                         {loading && <span className="text-blue-500">Uploading...</span>}
+                        {error && <span className="text-red-500">{error}</span>}
                     </div>
                 </div>
 

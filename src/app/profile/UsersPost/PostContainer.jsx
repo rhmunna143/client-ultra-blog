@@ -6,8 +6,6 @@ import UsersPost from "./UsersPost";
 const PostContainer = () => {
     const { usersPost, loading, error, setRefetch } = useUsersPost();
 
-    console.log('Users Post:', usersPost);
-
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     if (usersPost.length === 0) return <p className="mt-8">No post found! Crete your first post now.</p>;

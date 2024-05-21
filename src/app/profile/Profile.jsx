@@ -2,7 +2,6 @@
 
 import { AllContext } from "@/context/AllContext";
 import Image from "next/image";
-import Link from "next/link";
 import { useContext } from "react";
 
 const Profile = () => {
@@ -10,7 +9,7 @@ const Profile = () => {
     const { image_link, username, full_name, email, id } = currentUser || {};
 
     return (
-        <div className="mt-10 w-fit mx-auto">
+        <div className="mt-10">
             <div className="img w-40 h-40 aspect-square rounded-full border">
                 {
                     image_link ? <Image
@@ -28,8 +27,6 @@ const Profile = () => {
             <p>Full Name: <span className="font-medium">{full_name ? full_name : "Name not updated"}</span></p>
             <p>Email: <span className="font-medium">{email ? email : "Email not updated"}</span></p>
             <p>ID: <span className="font-medium">{id}</span></p>
-
-            <Link href="/profile/edit" className="btn btn-sm mt-5 btn-secondary">Update Profile</Link>
         </div>
     );
 };

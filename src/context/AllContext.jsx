@@ -12,6 +12,7 @@ const AllContextProvider = ({ children }) => {
     const [loginUser, setLoginUser] = useState(null);
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [refetchCurrentUser, setRefetchCurrentUser] = useState(false);
 
     const router = useRouter();
 
@@ -68,7 +69,7 @@ const AllContextProvider = ({ children }) => {
         }).catch(err => {
             console.error(err);
         });
-    }, [loginUser, signUpUser]);
+    }, [loginUser, signUpUser, refetchCurrentUser]);
 
     useEffect(() => {
         if (signUpUser) {
@@ -89,7 +90,8 @@ const AllContextProvider = ({ children }) => {
         currentUser,
         logout,
         loading,
-        router
+        router,
+        setRefetchCurrentUser
     };
 
     return (
