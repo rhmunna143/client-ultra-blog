@@ -1,6 +1,7 @@
 "use client"
 import { baseUrl } from '@/app/lib/constant';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import React, { createContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -47,10 +48,14 @@ const AllContextProvider = ({ children }) => {
     };
 
     const logout = () => {
+        // Cookies.remove('token');
+
         axios.post(`${baseUrl}/auth/logout`, { withCredentials: true }).then(res => {
             if (res.data) {
                 setCurrentUser(null);
                 toast.success("Logged out successfully");
+
+                // Cookies.remove('token', { path: '/' });
             }
         }).catch(err => {
             console.error(err);

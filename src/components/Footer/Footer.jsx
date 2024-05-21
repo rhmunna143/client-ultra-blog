@@ -6,7 +6,7 @@ const Footer = () => {
             <aside className="items-center grid-flow-col justify-center">
 
 
-                <Link className="btn btn-ghost text-2xl text-white font-permanent-marker" href={"/"}>Ultra Blog</Link>
+                <Link className="btn btn-ghost text-2xl text-white font-permanent-marker" href={"/"}>UltraBlog</Link>
 
                 <p>Copyright © 2024 - All right reserved</p>
             </aside>

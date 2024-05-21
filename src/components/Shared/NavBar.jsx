@@ -29,7 +29,7 @@ const NavBar = () => {
                         </ul>
                     </div>
 
-                    <Link className="btn btn-ghost text-3xl text-blue-600 font-permanent-marker" href={"/"}>Ultra Blog</Link>
+                    <Link className="btn btn-ghost text-3xl text-blue-600 font-permanent-marker" href={"/"}>UltraBlog</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -52,16 +52,22 @@ const NavBar = () => {
                         currentUser && <p className="mx-4">{currentUser?.username}</p>
                     }
 
+
+
                     {
-                        loading ? <p>Loading...</p> : currentUser ? (
-                            <button onClick={logout} className="btn btn-ghost">Logout</button>
-                        ) : (
-                            <Link className="btn btn-ghost" href={"/login"}>Login</Link>
-                        )
+                        currentUser && <button onClick={logout} className="btn btn-ghost">Logout</button>
+                    }
+
+                    {
+                        !currentUser && <Link href={"/login"} className="btn btn-ghost">Login</Link>
+                    }
+
+                    {
+                        !currentUser && <Link href={"/signup"} className="btn btn-ghost">Sign Up</Link>
                     }
                 </div>
             </div>
-        </nav>
+        </nav >
     );
 };
 
