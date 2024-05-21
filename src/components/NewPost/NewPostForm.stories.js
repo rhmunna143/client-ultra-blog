@@ -1,7 +1,7 @@
 import NewPostForm from "./NewPostForm";
 
 export default {
-    title: "NewPostForm",
+    title: "Posts/NewPostForm",
     component: NewPostForm,
     argTypes: {
         onSubmit: { action: "submitted" }

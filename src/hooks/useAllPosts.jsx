@@ -10,7 +10,6 @@ const useAllPosts = () => {
     useEffect(() => {
         // fetch all posts
         axios.get(`${baseUrl}/posts`).then(res => {
-            console.log(res.data);
             if (res.data.length > 0) {
                 setPosts(res.data);
             }
