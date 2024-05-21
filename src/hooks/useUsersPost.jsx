@@ -1,21 +1,30 @@
-import { baseUrl } from "@/app/lib/constant";
+"use client";
+
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect } from "react";
+import { baseUrl } from "@/app/lib/constant";
 
 const useUsersPost = () => {
     const [usersPost, setUsersPost] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get(`${baseUrl}/posts/users-posts`, { withCredentials: true }).then((res) => {
-            if (res.data.length > 0) {
+        const fetchUsersPost = async () => {
+            try {
+                const res = await axios.get(`${baseUrl}/posts/users-post`, { withCredentials: true });
                 setUsersPost(res.data);
+            } catch (err) {
+                setError(err);
+            } finally {
+                setLoading(false);
             }
-        }).catch((err) => {
-            console.log(err);
-        });
-    }, [])
+        };
 
-    return usersPost;
+        fetchUsersPost();
+    }, []); // Empty dependency array means this runs once on mount
+
+    return { usersPost, loading, error };
 };
 
 export default useUsersPost;
