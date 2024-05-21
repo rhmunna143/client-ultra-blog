@@ -8,6 +8,7 @@ const useUsersPost = () => {
     const [usersPost, setUsersPost] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [refetch, setRefetch] = useState(false);
 
     useEffect(() => {
         const fetchUsersPost = async () => {
@@ -22,9 +23,9 @@ const useUsersPost = () => {
         };
 
         fetchUsersPost();
-    }, []); // Empty dependency array means this runs once on mount
+    }, [refetch]); // Empty dependency array means this runs once on mount
 
-    return { usersPost, loading, error };
+    return { usersPost, loading, error, setRefetch };
 };
 
 export default useUsersPost;

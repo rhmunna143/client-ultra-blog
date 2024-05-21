@@ -49,7 +49,7 @@ const NewPostForm = () => {
                 setSelectedFile(null);
             }
         }).catch((err) => {
-            toast.error("Failed to create post" + err);
+            toast.error("Failed to create post");
             console.error(err);
         });
     };

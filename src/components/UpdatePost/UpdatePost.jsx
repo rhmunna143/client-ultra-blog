@@ -49,7 +49,7 @@ const UpdatePostForm = () => {
                 toast.success("Post updated successfully");
             }
         }).catch((err) => {
-            toast.error("Failed to update post" + err);
+            toast.error("Failed to update post");
             console.error(err);
         });
     };

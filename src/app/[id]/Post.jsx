@@ -17,10 +17,9 @@ const Post = () => {
                 <Image
                     src={image_link || '/default-image.jpg'}
                     alt={title}
-                    width={450}
+                    width={550}
                     height={200}
                 />
-
 
                 <p className="text-2xl font-semibold capitalize my-4">{title}</p>
 

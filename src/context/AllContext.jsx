@@ -41,7 +41,7 @@ const AllContextProvider = ({ children }) => {
             }
         }).catch(err => {
             console.error(err);
-            toast.error("Failed to log in user." + err);
+            toast.error("Failed to log in user.");
         });
     };
 
