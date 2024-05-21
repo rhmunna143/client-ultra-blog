@@ -2,6 +2,8 @@ import React from "react"; // Add this line
 
 import SignUpForm from "./SignUpForm";
 import AllContextProvider from "@/context/AllContext";
+import { useRouter } from 'next/navigation';
+
 
 export default {
     title: "Authentication-Form/SignUpForm",

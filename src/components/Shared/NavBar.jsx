@@ -19,26 +19,39 @@ const NavBar = () => {
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link href={"/"}>Home</Link></li>
 
-                            <li><Link href={"/profile"}>Profile</Link></li>
+                            {
+                                currentUser && <li><Link href={"/new-post"}>New Post</Link></li>
+                            }
+
+                            {
+                                currentUser && <li><Link href={"/profile"}>Profile</Link></li>
+                            }
                         </ul>
                     </div>
 
-                    <a className="btn btn-ghost text-xl">Ultra Blog</a>
+                    <Link className="btn btn-ghost text-3xl text-blue-600 font-permanent-marker" href={"/"}>Ultra Blog</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         <li><Link href={"/"}>Home</Link></li>
 
+                        {
+                            currentUser && <li><Link href={"/new-post"}>New Post</Link></li>
+                        }
 
-                        <li><Link href={"/profile"}>Profile</Link></li>
+                        {
+                            currentUser && <li><Link href={"/profile"}>Profile</Link></li>
+                        }
+
+
                     </ul>
                 </div>
 
                 <div className="navbar-end">
                     {
-                        currentUser && <p>{currentUser?.username}</p>
+                        currentUser && <p className="mx-4">{currentUser?.username}</p>
                     }
-                    
+
                     {
                         loading ? <p>Loading...</p> : currentUser ? (
                             <button onClick={logout} className="btn btn-ghost">Logout</button>
