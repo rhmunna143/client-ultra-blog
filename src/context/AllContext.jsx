@@ -11,6 +11,7 @@ const AllContextProvider = ({ children }) => {
     const [signUpUser, setSignUp] = useState(null);
     const [loginUser, setLoginUser] = useState(null);
     const [currentUser, setCurrentUser] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const signUp = (username, password) => {
         axios.post(`${baseUrl}/auth/register`, {
@@ -43,7 +44,7 @@ const AllContextProvider = ({ children }) => {
     };
 
     const logout = () => {
-        axios.get(`${baseUrl}/auth/logout`, { withCredentials: true }).then(res => {
+        axios.post(`${baseUrl}/auth/logout`, { withCredentials: true }).then(res => {
             if (res.data) {
                 setCurrentUser(null);
                 toast.success("Logged out successfully");
@@ -55,14 +56,17 @@ const AllContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
+        setLoading(true);
+
         axios.get(`${baseUrl}/auth/check-login`, { withCredentials: true }).then(res => {
             if (res.data) {
                 setCurrentUser(res.data);
+                setLoading(false);
             }
         }).catch(err => {
             console.error(err);
         });
-    }, []);
+    }, [loginUser, signUpUser]);
 
     const value = {
         // Add your context values here
@@ -71,7 +75,8 @@ const AllContextProvider = ({ children }) => {
         signUpUser,
         loginUser,
         currentUser,
-        logout
+        logout,
+        loading
     };
 
     return (
