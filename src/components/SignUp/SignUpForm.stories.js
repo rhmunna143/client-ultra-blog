@@ -4,7 +4,7 @@ import SignUpForm from "./SignUpForm";
 import AllContextProvider from "@/context/AllContext";
 
 export default {
-    title: "SignUpForm",
+    title: "Authentication-Form/SignUpForm",
     component: SignUpForm,
     argTypes: {
         onSubmit: { action: "submitted" },

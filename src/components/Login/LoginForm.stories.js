@@ -2,7 +2,7 @@ import AllContextProvider from "@/context/AllContext";
 import LoginForm from "./LoginForm";
 
 export default {
-    title: "LoginForm",
+    title: "Authentication-Form/LoginForm",
     component: LoginForm,
     argTypes: {
         onSubmit: { action: "submitted" },

@@ -1,20 +1,24 @@
 "use client"
 import { baseUrl } from '@/app/lib/constant';
 import axios from 'axios';
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
+import { set } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
 export const AllContext = createContext(null);
 
 const AllContextProvider = ({ children }) => {
+    const [signUpUser, setSignUp] = useState(null);
+    const [loginUser, setLoginUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState(null);
 
     const signUp = (username, password) => {
         axios.post(`${baseUrl}/auth/register`, {
             username,
             password
         }, { withCredentials: true }).then(res => {
-            console.log(res);
             if (res.data.id) {
+                setSignUp(res.data);
                 toast.success("User created successfully");
             }
         }).catch(err => {
@@ -28,9 +32,9 @@ const AllContextProvider = ({ children }) => {
             username,
             password
         }, { withCredentials: true }).then(res => {
-            console.log(res);
-            if (res.data.id) {
-                toast.success(`${res.data?.username} logged in successfully`);
+            if (res.data.user_id) {
+                setLoginUser(res.data);
+                toast.success(`${res?.data?.username} logged in successfully`);
             }
         }).catch(err => {
             console.error(err);
@@ -41,7 +45,10 @@ const AllContextProvider = ({ children }) => {
     const value = {
         // Add your context values here
         signUp,
-        login
+        login,
+        signUpUser,
+        loginUser,
+        currentUser,
     };
 
     return (
