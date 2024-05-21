@@ -1,10 +1,12 @@
 "use client";
 
-import { imgBBApiKey } from "@/app/lib/constant";
+import { baseUrl, imgBBApiKey } from "@/app/lib/constant";
 import useImgBBUpload from "@/hooks/useImgBbUpload";
+import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const NewPostForm = () => {
     const { uploadImage, loading, error, imageUrl } = useImgBBUpload(imgBBApiKey);
@@ -13,15 +15,12 @@ const NewPostForm = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         setSelectedFile(file);
-        console.log("selected file", file);
     };
-
 
     const handleUpload = () => {
         if (selectedFile) {
             uploadImage(selectedFile);
         }
-        console.log("uploading");
     };
 
     const {
@@ -33,8 +32,26 @@ const NewPostForm = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        data.imageUrl = imageUrl; // Add the image URL to form data if needed
-        console.log(data);
+        const payload = {
+            title: data.title,
+            content: data.content,
+            image_link: imageUrl,
+        };
+
+        axios.post(`${baseUrl}/posts`, payload, { withCredentials: true }).then((res) => {
+            if (res.data?.id) {
+                // show success message
+                toast.success("Post created successfully");
+
+                // clear the form
+                setValue("title", "");
+                setValue("content", "");
+                setSelectedFile(null);
+            }
+        }).catch((err) => {
+            toast.error("Failed to create post" + err);
+            console.error(err);
+        });
     };
 
     return (
@@ -72,6 +89,7 @@ const NewPostForm = () => {
                     <div className="upload">
                         <button
                             onClick={handleUpload}
+                            disabled={loading || !selectedFile}
                             type="button"
                             className="btn btn-outline btn-sm mt-2 float-right"
                         >
