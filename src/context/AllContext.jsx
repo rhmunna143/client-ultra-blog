@@ -1,7 +1,7 @@
 "use client"
 import { baseUrl } from '@/app/lib/constant';
 import axios from 'axios';
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { set } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
@@ -42,6 +42,28 @@ const AllContextProvider = ({ children }) => {
         });
     };
 
+    const logout = () => {
+        axios.get(`${baseUrl}/auth/logout`, { withCredentials: true }).then(res => {
+            if (res.data) {
+                setCurrentUser(null);
+                toast.success("Logged out successfully");
+            }
+        }).catch(err => {
+            console.error(err);
+            toast.error("Failed to log out user");
+        });
+    };
+
+    useEffect(() => {
+        axios.get(`${baseUrl}/auth/check-login`, { withCredentials: true }).then(res => {
+            if (res.data) {
+                setCurrentUser(res.data);
+            }
+        }).catch(err => {
+            console.error(err);
+        });
+    }, []);
+
     const value = {
         // Add your context values here
         signUp,
@@ -49,6 +71,7 @@ const AllContextProvider = ({ children }) => {
         signUpUser,
         loginUser,
         currentUser,
+        logout
     };
 
     return (
