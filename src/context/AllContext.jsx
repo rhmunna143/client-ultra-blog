@@ -1,8 +1,8 @@
 "use client"
 import { baseUrl } from '@/app/lib/constant';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import React, { createContext, useEffect, useState } from 'react';
-import { set } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
 export const AllContext = createContext(null);
@@ -12,6 +12,8 @@ const AllContextProvider = ({ children }) => {
     const [loginUser, setLoginUser] = useState(null);
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const router = useRouter();
 
     const signUp = (username, password) => {
         axios.post(`${baseUrl}/auth/register`, {
@@ -68,6 +70,16 @@ const AllContextProvider = ({ children }) => {
         });
     }, [loginUser, signUpUser]);
 
+    useEffect(() => {
+        if (signUpUser) {
+            return router.push('/login');
+        }
+
+        if (loginUser) {
+            return router.push('/');
+        }
+    }, [signUpUser, router, loginUser])
+
     const value = {
         // Add your context values here
         signUp,
@@ -76,7 +88,8 @@ const AllContextProvider = ({ children }) => {
         loginUser,
         currentUser,
         logout,
-        loading
+        loading,
+        router
     };
 
     return (
