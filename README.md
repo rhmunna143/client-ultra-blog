@@ -4,6 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Live Website: https://ultrablog.vercel.app
 ## Sever-side source code: https://github.com/rhmunna143/server-ultra-blog
+## Storybook static link: https://sunny-belekoy-ec81b9.netlify.app
 
 Running the Project Locally
 1. Clone the repository
