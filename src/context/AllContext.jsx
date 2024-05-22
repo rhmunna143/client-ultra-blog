@@ -1,7 +1,6 @@
 "use client"
 import { baseUrl } from '@/app/lib/constant';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import React, { createContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -14,6 +13,8 @@ const AllContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(false);
     const [refetchCurrentUser, setRefetchCurrentUser] = useState(false);
+
+    axios.defaults.withCredentials = true;
 
     const router = useRouter();
 

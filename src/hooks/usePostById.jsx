@@ -10,7 +10,6 @@ const usePostById = (id) => {
     useEffect(() => {
         // fetch post by id
         axios.get(`${baseUrl}/posts/${id}`).then(res => {
-            console.log(res.data);
             if (res.data?.id) {
                 setPost(res.data);
             }

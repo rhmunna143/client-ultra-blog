@@ -47,7 +47,6 @@ const UpdateProfile = () => {
             if (res.data?.id) {
                 // show success message
                 toast.success("Profile updated successfully");
-                console.log("Profile updated successfully");
             }
         }).catch((err) => {
             toast.error("Failed to update profile");
