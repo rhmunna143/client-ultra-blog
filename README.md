@@ -148,33 +148,33 @@ email: User's email (optional)
 - Method: POST
 - Description: Create a new post.
 - Request Body: JSON object with title, content, and optionally image_link.
-
+##
 - Get All Posts
 - URL: /
 - Method: GET
 - Description: Retrieve all posts.
-
+##
 - Get All Posts by the Current User
 - URL: /users-post
 - Method: GET
 - Description: Retrieve all posts authored by the current user.
-
+##
 - Get a Single Post
 - URL: /:id
 - Method: GET
 - Description: Retrieve a single post by its ID.
-
+##
 - Update a Post
 - URL: /:id
 - Method: PUT
 - Description: Update a post by its ID.
 - Request Body: JSON object with title, content, and optionally image_link.
-
+##
 - Delete a Post
 - URL: /:id
 - Method: DELETE
 - Description: Delete a post by its ID.
-
+##
 2. Authentication (User) API
 
 - Base URL: https://server-ultra-blog.vercel.app/api/auth
@@ -184,24 +184,24 @@ email: User's email (optional)
 - Method: POST
 - Description: Register a new user.
 - Request Body: JSON object with username, password, full_name, image_link, and email.
-
+##
 - Login User
 - URL: /login
 - Method: POST
 - Description: Log in a user.
 - Request Body: JSON object with username and password.
-
+##
 - Update User
 - URL: /update-user/:id
 - Method: PUT
 - Description: Update user details.
 - Request Body: JSON object with newUsername, full_name, image_link, and email.
-
+##
 - Logout User
 - URL: /logout
 - Method: POST
 - Description: Log out a user.
-
+##
 - Check Login Status
 - URL: /check-login
 - Method: GET
