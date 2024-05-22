@@ -137,7 +137,7 @@ email: User's email (optional)
 - Description: Allows authenticated users to delete their own posts by providing the post ID.
 - Request Body: None
 
-## Live API's:
+# Live API's:
 
 1. Posts API
 

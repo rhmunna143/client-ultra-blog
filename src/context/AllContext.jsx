@@ -14,8 +14,6 @@ const AllContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [refetchCurrentUser, setRefetchCurrentUser] = useState(false);
 
-    axios.defaults.withCredentials = true;
-
     const router = useRouter();
 
     const signUp = (username, password) => {
